@@ -3,6 +3,8 @@ base.py — Main Django settings for Horilla
 """
 
 import os
+import environ
+
 from datetime import timedelta
 from os.path import join
 from pathlib import Path
@@ -54,6 +56,7 @@ INSTALLED_APPS = [
     "django_apscheduler",
     "rest_framework",
     "rest_framework_simplejwt",
+    'django_extensions',
     "drf_yasg",
     # Core Horilla apps
     "horilla_auth",
@@ -193,6 +196,8 @@ AUTH_USER_MODEL = "horilla_auth.HorillaUser"
 
 X_FRAME_OPTIONS = "SAMEORIGIN"
 
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+USE_X_FORWARDED_HOST = True
 # ========================================
 # TEMPLATES
 # ========================================
@@ -286,7 +291,7 @@ DJANGO_NOTIFICATIONS_CONFIG = {
 # ========================================
 # HORILLA-SPECIFIC SETTINGS
 # ========================================
-WHITE_LABELLING = False
+WHITE_LABELLING = True
 NESTED_SUBORDINATE_VISIBILITY = False
 TWO_FACTORS_AUTHENTICATION = False
 
@@ -445,3 +450,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 AUTH_LDAP_ALWAYS_UPDATE_USER = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+USE_X_FORWARDED_HOST = True
+
+APPEND_SLASH = False

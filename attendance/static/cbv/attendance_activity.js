@@ -1,4 +1,4 @@
-tickCheckboxes();
+/*tickCheckboxes();
 function makeListUnique(list) {
     return Array.from(new Set(list));
 }
@@ -9,6 +9,24 @@ function makeactivityListUnique(list) {
 }
 
 ticklatecomeCheckboxes();
+function makelatecomeListUnique(list) {
+    return Array.from(new Set(list));
+}*/
+
+$(document).ready(function () {
+    if (typeof tickCheckboxes === "function") tickCheckboxes();
+    if (typeof tickactivityCheckboxes === "function") tickactivityCheckboxes();
+    if (typeof ticklatecomeCheckboxes === "function") ticklatecomeCheckboxes();
+});
+
+function makeListUnique(list) {
+    return Array.from(new Set(list));
+}
+
+function makeactivityListUnique(list) {
+    return Array.from(new Set(list));
+}
+
 function makelatecomeListUnique(list) {
     return Array.from(new Set(list));
 }
