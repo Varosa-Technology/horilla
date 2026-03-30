@@ -2,7 +2,7 @@
 Custom client-specific overrides.
 This file is intentionally empty by default and should NOT be tracked by Git.
 """
-
+import os
 from .base import *
 
 # # --- 1️⃣ Basic overrides ---
@@ -29,3 +29,18 @@ from .base import *
 # # --- 4️⃣ Override any other settings if needed ---
 # TIME_ZONE = "Europe/Berlin"
 # LANGUAGE_CODE = "de"
+# Database connection pooling
+DATABASES['default'].update({'CONN_MAX_AGE': 60})
+
+# Redis Cache
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": f"redis://:{env('REDIS_PASSWORD')}@127.0.0.1:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        },
+        "TIMEOUT": 300,
+    }
+}
+
