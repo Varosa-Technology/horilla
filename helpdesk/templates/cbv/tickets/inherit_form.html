@@ -8,7 +8,7 @@
         if (assigning_type) {
             $.ajax({
                 type: "GET",
-                url: "/helpdesk/get-raised-on",
+                url: "/helpdesk/get-raised-on/",
                 data: {
                     'assigning_type': assigning_type,
                 },
@@ -41,7 +41,7 @@
             var assigning_type = $(this).find(":selected").val();
             $.ajax({
                 type: "GET",
-                url: "/helpdesk/get-raised-on",
+                url: "/helpdesk/get-raised-on/",
                 data: {
                     assigning_type: assigning_type,
                 },
