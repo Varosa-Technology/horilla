@@ -402,7 +402,8 @@ def delete_employee(request):
     """
     This method is used to delete the offboarding employee
     """
-    employee_ids = request.GET.getlist("employee_ids")
+    employee_ids = request.POST.getlist("employee_ids") or request.GET.getlist("employee_ids")
+    #employee_ids = request.GET.getlist("employee_ids")
     instances = OffboardingEmployee.objects.filter(id__in=employee_ids)
     if instances:
         instances.delete()
@@ -422,8 +423,10 @@ def delete_employee(request):
         )
     else:
         messages.error(request, _("Employees not found"))
+    #return redirect(filter_pipeline)
+    if request.headers.get("HX-Request"):
+        return HttpResponse(status=204)
     return redirect(filter_pipeline)
-
 
 @login_required
 @permission_required("offboarding.delete_offboardingstage")

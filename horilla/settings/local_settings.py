@@ -44,3 +44,4 @@ CACHES = {
     }
 }
 
+APPEND_SLASH = True
